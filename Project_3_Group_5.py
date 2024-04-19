@@ -1822,4 +1822,4 @@ interface = gr.TabbedInterface([airbnb_interface, weather_interface, Restaurants
 
 
 if __name__ ==  '__main__':
-    interface.launch(debug=True)
+    interface.launch(share=True)
