@@ -1746,7 +1746,8 @@ def update_options(choice):
         return gr.Dropdown(choices=list(list_of_cats.keys()))
     return []  
 
-
+mc_logo = Image.open('./Photos/Logo.jpg')
+travel_pro_product = Image.open('./Photos/Travel_pro.png')
 
 reset_user()
 
