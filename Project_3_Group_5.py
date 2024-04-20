@@ -63,6 +63,8 @@ nltk.download('punkt')
 load_dotenv('../my_keys.env')
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+api_key = os.getenv('WEATHER_API_KEY')
+google_api = os.getenv('GOOGLE_API')
 OPENAI_MODEL = "gpt-3.5-turbo"
 
 ################################################
@@ -124,7 +126,7 @@ df = pd.read_excel(PathExcel)
 
 df_unique = df.drop_duplicates()
 
-print(PathExcel)
+# print(PathExcel)
 
 final_path=f'{dest_dir}/UpdatedAna.xlsx'
 
@@ -153,7 +155,7 @@ filtered_df=filtered_df.dropna(subset=['price'])
 filtered_df.head()
 
 
-print(filtered_df.describe())
+# print(filtered_df.describe())
 
 
 filtered_df.columns
@@ -222,7 +224,7 @@ for column in columns_to_convert:
     df_sorted_multi[column] = pd.to_numeric(df_sorted_multi[column], errors='coerce')
 
 
-print(df_sorted_multi[columns_to_convert].isna().sum())
+# print(df_sorted_multi[columns_to_convert].isna().sum())
 
 
 
@@ -266,11 +268,11 @@ df_sorted_multi['score'] = (
 df_sorted_multi.sort_values(by='score', ascending=False, inplace=True)
 
 
-print(df_sorted_multi[['listing_url','latitude',
-       'longitude', 'score']])
+# print(df_sorted_multi[['listing_url','latitude',
+#        'longitude', 'score']])
 
 
-print(df_sorted_multi.dtypes)
+# print(df_sorted_multi.dtypes)
 
 
 rank_columns = columns_to_convert  
@@ -680,8 +682,7 @@ def get_city_name(latitude, longitude, api_key):
         return data['results'][0]['formatted_address']
     else:
         return "Unknown"
-api_key = os.getenv('WEATHER_API_KEY')
-google_api = os.getenv('GOOGLE_API')
+
 address = get_city_name(latitudeMap, longitudeMap, google_api)
 print(address)
 
@@ -1746,7 +1747,7 @@ def update_options(choice):
         return gr.Dropdown(choices=list(list_of_cats.keys()))
     return []  
 
-mc_logo = Image.open('./Photos/Logo.jpg')
+mc_logo = Image.open('./Photos/Logo.jpg', )
 travel_pro_product = Image.open('./Photos/Travel_pro.png')
 
 reset_user()
@@ -1776,10 +1777,10 @@ with gr.Blocks(title='Restaurant Recommendations') as Restaurants:
 
     with gr.Row():
         output1 = gr.Textbox(scale=3, visible=True, show_label=False, interactive=False)
-        photo1 = gr.Image(scale=1, visible=True,show_label=False)
+        photo1 = gr.Image(mc_logo,scale=1, visible=True,show_label=False)
     with gr.Row():
         output2 = gr.Textbox(scale=3, visible=True, show_label=False, interactive=False)
-        photo2 = gr.Image(scale=1, visible=True,show_label=False)
+        photo2 = gr.Image(travel_pro_product, scale=1, visible=True,show_label=False)
     with gr.Row():
         output3 = gr.Textbox(scale=3, visible=True, show_label=False, interactive=False)
         photo3 = gr.Image(scale=1, visible=True,show_label=False)
@@ -1799,6 +1800,8 @@ with gr.Blocks(theme=theme1) as site_seeing:
             top_priority = gr.Radio(label="Top Priority", choices=["Music", "Food", "Museums", "Sports"])
             other_preferences = gr.CheckboxGroup(label="Other Preferences", choices=["Adventure", "Food", "Michelin Star Meals", "Museums", "Nature", "Sports", "Wine Tasting"])
             special_requests = gr.Textbox(label="Special Requests")
+        with gr.Column(scale=1):
+            gr.Image(travel_pro_product, show_label=False)
     with gr.Row():
         submit = gr.Button("Generate Itinerary")
         
