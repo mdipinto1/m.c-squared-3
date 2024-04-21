@@ -10,7 +10,7 @@ import streamlit as st
 OPENAI_MODEL = "gpt-3.5-turbo"
 
 # Store the API key in a variable.
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = "HARDCODE API"
 
 # OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
