@@ -5,8 +5,6 @@
 
 Sight Seeing Portion of Application:  
 
-Sightseeing Application:
-
 This application is an example of how advanced language models can be integrated into practical applications, like travel planning, using modern Python libraries for natural language processing and web interface design. I originally used Streamlit for this portion of the app.  I have included those files in a separate file if you want to compare Streamlit to Gradio.
 
 Here's the Environment set up:
